@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL"
+  xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI"
+  xmlns:dc="http://www.omg.org/spec/DD/20100524/DC"
+  xmlns:di="http://www.omg.org/spec/DD/20100524/DI"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:zeebe="http://camunda.org/schema/zeebe/1.0" id="Definitions_0o87biy" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Zeebe Modeler" exporterVersion="0.10.0">
+  <bpmn:process id="screenshot" name="Screenshots" isExecutable="true">
+    <bpmn:startEvent id="StartEvent_1">
+      <bpmn:outgoing>SequenceFlow_1jbw0ni</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:sequenceFlow id="SequenceFlow_1jbw0ni" sourceRef="StartEvent_1" targetRef="Activity_16tkiw6" />
+    <bpmn:endEvent id="Event_0yx0mkt">
+      <bpmn:incoming>Flow_0c4uwsp</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="Flow_0lu68ux" sourceRef="Activity_16tkiw6" targetRef="Event_0dkomns" />
+    <bpmn:sequenceFlow id="Flow_1er89sg" sourceRef="Event_0dkomns" targetRef="Activity_0vyzjsa" />
+    <bpmn:sequenceFlow id="Flow_0c4uwsp" sourceRef="Activity_0vyzjsa" targetRef="Event_0yx0mkt" />
+    <bpmn:intermediateCatchEvent id="Event_0dkomns" name="Wait 60 Seconds">
+      <bpmn:incoming>Flow_0lu68ux</bpmn:incoming>
+      <bpmn:outgoing>Flow_1er89sg</bpmn:outgoing>
+      <bpmn:timerEventDefinition id="TimerEventDefinition_12d7qud">
+        <bpmn:timeDuration xsi:type="bpmn:tFormalExpression">PT60S</bpmn:timeDuration>
+      </bpmn:timerEventDefinition>
+    </bpmn:intermediateCatchEvent>
+    <bpmn:serviceTask id="Activity_16tkiw6" name="Create Screenshot Job">
+      <bpmn:extensionElements>
+        <zeebe:taskDefinition type="websiteshot-create-job" retries="1" />
+        <zeebe:taskHeaders>
+          <zeebe:header key="templateid" value="change-me" />
+        </zeebe:taskHeaders>
+      </bpmn:extensionElements>
+      <bpmn:incoming>SequenceFlow_1jbw0ni</bpmn:incoming>
+      <bpmn:outgoing>Flow_0lu68ux</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:serviceTask id="Activity_0vyzjsa" name="Upload to Cloud Bucket">
+      <bpmn:extensionElements>
+        <zeebe:taskDefinition type="aws-bucket-upload" retries="1" />
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_1er89sg</bpmn:incoming>
+      <bpmn:outgoing>Flow_0c4uwsp</bpmn:outgoing>
+    </bpmn:serviceTask>
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="screenshot">
+      <bpmndi:BPMNEdge id="Flow_0c4uwsp_di" bpmnElement="Flow_0c4uwsp">
+        <di:waypoint x="640" y="121" />
+        <di:waypoint x="772" y="121" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1er89sg_di" bpmnElement="Flow_1er89sg">
+        <di:waypoint x="478" y="121" />
+        <di:waypoint x="540" y="121" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0lu68ux_di" bpmnElement="Flow_0lu68ux">
+        <di:waypoint x="360" y="121" />
+        <di:waypoint x="442" y="121" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="SequenceFlow_1jbw0ni_di" bpmnElement="SequenceFlow_1jbw0ni">
+        <di:waypoint x="215" y="121" />
+        <di:waypoint x="260" y="121" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="StartEvent_1">
+        <dc:Bounds x="179" y="103" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_0yx0mkt_di" bpmnElement="Event_0yx0mkt">
+        <dc:Bounds x="772" y="103" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_1f1ka3r_di" bpmnElement="Event_0dkomns">
+        <dc:Bounds x="442" y="103" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="419" y="146" width="84" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1qvipc5_di" bpmnElement="Activity_16tkiw6">
+        <dc:Bounds x="260" y="81" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_125h1ci_di" bpmnElement="Activity_0vyzjsa">
+        <dc:Bounds x="540" y="81" width="100" height="80" />
+      </bpmndi:BPMNShape>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>
