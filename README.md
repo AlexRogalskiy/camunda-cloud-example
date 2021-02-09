@@ -41,7 +41,7 @@ This is the BPMN diagram that is executed in the process:
 19:21:54.860 | zeebe |  INFO: Authenticating client with Camunda Cloud...
 19:21:55.136 | zeebe |  INFO: Established encrypted connection to Camunda Cloud.
 [1612894915174] INFO (websiteshot-camunda-cloud-example/112614 on matrix): Creating Zeebe Workers
-[1612894965793] INFO (websiteshot-camunda-cloud-example/112614 on matrix): Creating Screenshot Job for Template Id 5eb77c0d-cc64-40e0-bc74-3653e5d5a46b
+[1612894965793] INFO (websiteshot-camunda-cloud-example/112614 on matrix): Creating Screenshot Job for Template Id ...
 [1612895032930] INFO (websiteshot-camunda-cloud-example/112614 on matrix): name: bpmn-modeler.png
 [1612895032931] INFO (websiteshot-camunda-cloud-example/112614 on matrix): name: cloud-api.png
 [1612895032931] INFO (websiteshot-camunda-cloud-example/112614 on matrix): name: bpmn-models.png
