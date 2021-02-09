@@ -1,5 +1,23 @@
 # Camunda Cloud Integration with Websiteshot
 
+<hr />
+
+<div align="center">
+    <a href="https://websiteshot.app/">
+        <img src="https://websiteshot-docs.s3.eu-central-1.amazonaws.com/logopublicsmall.png" width="100">
+    </a>
+</div>
+
+<div align="center">
+<p>Never spend time again to create awesome screenshots of your websites.</p>
+</div>
+
+<div align="center">
+<a style="margin: 1em;" href="https://websiteshot.app">Website</a> | <a style="margin: 1em;" href="https://console.websiteshot.app">Console</a> | <a style="margin: 1em;" href="https://github.com/websiteshot/community/discussions">Community</a> | <a style="margin: 1em;" href="https://docs.websiteshot.app">Documentation</a>
+</div>
+
+<hr />
+
 ## Usage
 
 ### Environment Variables
